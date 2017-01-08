@@ -1,10 +1,10 @@
 #!/bin/bash
 suffix=x86_64-unknown-linux-gnu
 for channel in stable beta nightly; do
-    archive=$(curl -fsSL https://static.rust-lang.org/dist/channel-rust-$channel | grep $suffix)
-
+    archive=$(curl -fsSL https://static.rust-lang.org/dist/channel-rust-$channel | grep $suffix )
+    dir=`echo $archive | sed -r 's/\.tar\.gz//g'`;
     mkdir -p $channel;
-    sed -e 's/@@VERSION@@/'${archive}'/g' Dockerfile.template > $channel/Dockerfile;
+    sed -e 's/@@VERSION@@/'${dir}'/g' Dockerfile.template > $channel/Dockerfile;
     echo "Created: $channel/Dockerfile"
     if [ $channel == "stable" ]; then
       version=`echo $archive | sed -e 's/-'${suffix}'\.tar\.gz//g' | sed -e 's/rust-//g'`;

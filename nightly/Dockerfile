@@ -1,7 +1,7 @@
 FROM alpine:latest
 MAINTAINER Jonathan Kingston <j@kingston.me>
 
-ENV RUST_DIR rust-nightly-x86_64-unknown-linux-gnu.tar.gz 
+ENV RUST_DIR rust-nightly-x86_64-unknown-linux-gnu
 ENV RUST_PACKAGE $RUST_DIR.tar.gz
 ENV RUST_DOWNLOAD https://static.rust-lang.org/dist/$RUST_PACKAGE
 
